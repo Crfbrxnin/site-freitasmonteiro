@@ -113,7 +113,7 @@ export const GROUPS: Group[] = [
     defaults: {
       whatsapp: "5521987491091",
       phoneDisplay: "(21) 98749-1091",
-      email: "",
+      email: "contato@freitasmonteiro.com.br",
       address: "",
       district: "",
       city: "Rio de Janeiro",
@@ -344,7 +344,7 @@ export const GROUPS: Group[] = [
       { name: "updatedAt", label: "Data da última atualização", type: "text", placeholder: "09/11/2026" },
       { name: "content", label: "Texto da política", type: "markdown" },
     ],
-    defaults: { dpoName: "", dpoEmail: "", updatedAt: "", content: PRIVACY_TEMPLATE },
+    defaults: { dpoName: "", dpoEmail: "contato@freitasmonteiro.com.br", updatedAt: "", content: PRIVACY_TEMPLATE },
   },
   {
     key: "integracoes",
@@ -360,7 +360,7 @@ export const GROUPS: Group[] = [
       { name: "webhookUrl", label: "Webhook de CRM / automação (opcional)", type: "url", help: "Cada lead é enviado em JSON (POST) para este endereço. Compatível com Make, Zapier, n8n, RD Station via integração, etc." },
       { name: "webhookSecret", label: "Segredo do webhook (opcional)", type: "text", help: "Enviado no cabeçalho X-Webhook-Secret para o destino validar a origem." },
     ],
-    defaults: { ga4Id: "", gscVerification: "", metaPixelId: "", leadEmailTo: "", webhookUrl: "", webhookSecret: "" },
+    defaults: { ga4Id: "", gscVerification: "", metaPixelId: "", leadEmailTo: "bruno@freitasmonteiro.com.br", webhookUrl: "", webhookSecret: "" },
   },
 ];
 

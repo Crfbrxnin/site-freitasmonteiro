@@ -25,7 +25,7 @@ Para criar ou redefinir um administrador pelo terminal: `npm run admin:create --
 
 | Variável | Obrigatória | Para quê |
 | --- | --- | --- |
-| `SITE_URL` | sim | Domínio público (canonical, sitemap, Open Graph). Ex.: `https://www.brunofreitas.com.br` |
+| `SITE_URL` | sim | Domínio público (canonical, sitemap, Open Graph): `https://freitasmonteiro.com.br` |
 | `DATABASE_URL` | sim | `file:./data/site.db` (servidor com disco) ou `libsql://...turso.io` |
 | `DATABASE_AUTH_TOKEN` | com Turso | Token do banco Turso |
 | `SESSION_SECRET` | sim | Segredo das sessões do painel (mín. 32 caracteres): `openssl rand -base64 48` |
@@ -41,7 +41,14 @@ Nenhum segredo vai para o navegador. GA4, Search Console, Meta Pixel, e-mail de 
 
 **Opção B — Vercel:** use **Turso** (`DATABASE_URL=libsql://...` + `DATABASE_AUTH_TOKEN`), porque o disco da Vercel não é persistente. Imagens enviadas pelo painel ficam no próprio banco, então funcionam nas duas opções.
 
-Depois de publicar: cadastre o domínio no Google Search Console (código de verificação em *Integrações*) e envie `https://SEU-DOMINIO/sitemap.xml`.
+### Domínio e e-mails
+
+- **Endereço principal:** `https://freitasmonteiro.com.br`. O `www.freitasmonteiro.com.br` redireciona para ele (já configurado no `next.config.ts`); aponte os dois no DNS para a hospedagem e ative HTTPS.
+- **E-mail público do site:** `contato@freitasmonteiro.com.br` (rodapé, Contato, dados estruturados e Política de Privacidade).
+- **E-mail que recebe os leads:** `bruno@freitasmonteiro.com.br` (Painel › Integrações). Para o envio funcionar, configure o SMTP da caixa `contato@` nas variáveis `SMTP_*`.
+- **Administrador:** use `ADMIN_EMAIL=bruno@freitasmonteiro.com.br` no primeiro acesso.
+- **Entregabilidade:** no DNS do domínio, mantenha os registros SPF, DKIM e DMARC indicados pelo seu provedor de e-mail (Google Workspace, Microsoft 365, Zoho, Hostinger etc.), para que os avisos de lead não caiam no spam.
+- **Google Search Console:** cadastre a propriedade de domínio `freitasmonteiro.com.br` (verificação por DNS) ou use o código de verificação em *Integrações*, e envie `https://freitasmonteiro.com.br/sitemap.xml`.
 
 ## 4. Páginas
 
@@ -87,7 +94,7 @@ Senhas com bcrypt; sessão JWT em cookie `httpOnly`/`secure`/`SameSite=Lax` com 
 
 Nada foi inventado. O painel lista o que falta em *Pendências de configuração*:
 
-- e-mail profissional, horário, endereço (ou manter oculto) e região atendida;
+- horário, endereço (ou manter oculto) e região atendida;
 - razão social, CNPJ e, se existir, CRC da organização contábil;
 - foto profissional, apresentação de Bruno Freitas, história, missão, visão, valores e equipe;
 - depoimentos reais com autorização;
@@ -95,6 +102,6 @@ Nada foi inventado. O painel lista o que falta em *Pendências de configuração
 - revisão dos textos dos serviços e dos 3 artigos iniciais (escritos como ponto de partida, sem números que mudam com a legislação);
 - revisão jurídica da Política de Privacidade.
 
-Dados já preenchidos a partir do manual: CRC RJ-141105/O-6, WhatsApp (21) 98749-1091, Instagram @brunofreitas.cont, Rio de Janeiro/RJ.
+Dados já preenchidos: CRC RJ-141105/O-6, WhatsApp (21) 98749-1091, Instagram @brunofreitas.cont, Rio de Janeiro/RJ, domínio freitasmonteiro.com.br, e-mail contato@freitasmonteiro.com.br e leads para bruno@freitasmonteiro.com.br.
 
 **Fotos:** as imagens em `public/images/` vieram do Unsplash (licença Unsplash: uso comercial gratuito, sem obrigação de crédito; não é permitido revendê-las como imagens avulsas). Foram extraídas do PDF do manual, então têm resolução limitada (até 940 × 2075 px). Para máxima nitidez em telas de alta densidade, substitua cada arquivo pelo original baixado do Unsplash mantendo o mesmo nome (`calculadora-vertical.jpg`, `calculadora.jpg`, `travessia-vertical.jpg`, `travessia.jpg`, `edificio.jpg`). O site já aplica o tratamento P&B do manual automaticamente. Para o retrato do Bruno, use foto própria (campo *Foto profissional* em Sobre nós).

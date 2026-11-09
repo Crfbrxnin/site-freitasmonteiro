@@ -23,7 +23,8 @@ export function readingTime(markdown: string) {
 }
 
 export function siteUrl(path = "") {
-  const base = (process.env.SITE_URL || "http://localhost:3000").replace(/\/+$/, "");
+  const fallback = process.env.NODE_ENV === "production" ? "https://freitasmonteiro.com.br" : "http://localhost:3000";
+  const base = (process.env.SITE_URL || fallback).replace(/\/+$/, "");
   return `${base}${path}`;
 }
 

@@ -15,6 +15,16 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     localPatterns: [{ pathname: "/api/media/**" }, { pathname: "/images/**" }],
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.freitasmonteiro.com.br" }],
+        destination: "https://freitasmonteiro.com.br/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },
