@@ -47,7 +47,7 @@ Todas as páginas leem o banco a cada acesso (10–40 ms), então a instalação
    - `DATABASE_URL=file:/app/data/site.db`
    - `SESSION_SECRET=` (gere com `openssl rand -base64 48`)
    - `ADMIN_EMAIL=bruno@freitasmonteiro.com.br` e `ADMIN_PASSWORD=` (temporária; remova após o primeiro login)
-   - `SMTP_*` quando a caixa `contato@` estiver criada.
+   - `SMTP_*` quando o e-mail estiver criado (exemplo com Zoho no `.env.example`).
 5. **Domínio:** em *Settings → Networking → Custom Domain*, adicione `freitasmonteiro.com.br` e `www.freitasmonteiro.com.br`. O Railway mostra os registros DNS a criar.
 6. **DNS no Cloudflare** (plano gratuito): domínios `.com.br` usam o Registro.br, cujo DNS não aceita CNAME no domínio raiz. Crie a zona no Cloudflare, aponte os *nameservers* no Registro.br para os do Cloudflare e crie os registros indicados pelo Railway com a nuvem **cinza** (*DNS only*). Antes de trocar os nameservers, confira se os registros de e-mail (MX, SPF, DKIM, DMARC) foram copiados.
 
@@ -61,7 +61,8 @@ Todas as páginas leem o banco a cada acesso (10–40 ms), então a instalação
 
 - **Endereço principal:** `https://freitasmonteiro.com.br`. O `www.freitasmonteiro.com.br` redireciona para ele (já configurado no `next.config.ts`); aponte os dois no DNS para a hospedagem e ative HTTPS.
 - **E-mail público do site:** `contato@freitasmonteiro.com.br` (rodapé, Contato, dados estruturados e Política de Privacidade).
-- **E-mail que recebe os leads:** `bruno@freitasmonteiro.com.br` (Painel › Integrações). Para o envio funcionar, configure o SMTP da caixa `contato@` nas variáveis `SMTP_*`.
+- **E-mail que recebe os leads:** `bruno@freitasmonteiro.com.br` (Painel › Integrações).
+- **Provedor de e-mail sugerido (aceita pessoa física):** Zoho Mail Lite, com `bruno@` como conta e `contato@` como alias. O site envia os avisos pelo SMTP do Zoho (`smtp.zoho.com`, porta 587, usuário `bruno@`, senha específica de aplicativo, remetente `contato@`). Os registros de DNS exatos (MX, SPF, DKIM) aparecem no painel do Zoho; crie-os no Cloudflare e acrescente `_dmarc` com `v=DMARC1; p=none; rua=mailto:bruno@freitasmonteiro.com.br`.
 - **Administrador:** use `ADMIN_EMAIL=bruno@freitasmonteiro.com.br` no primeiro acesso.
 - **Entregabilidade:** no DNS do domínio, mantenha os registros SPF, DKIM e DMARC indicados pelo seu provedor de e-mail (Google Workspace, Microsoft 365, Zoho, Hostinger etc.), para que os avisos de lead não caiam no spam.
 - **Google Search Console:** cadastre a propriedade de domínio `freitasmonteiro.com.br` (verificação por DNS) ou use o código de verificação em *Integrações*, e envie `https://freitasmonteiro.com.br/sitemap.xml`.
