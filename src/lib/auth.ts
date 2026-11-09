@@ -23,6 +23,12 @@ function secret(): Uint8Array {
   return g.__bfDevSecret;
 }
 
+/** Indica se o segredo das sessões está configurado corretamente (sem revelar o valor). */
+export function isSessionSecretConfigured() {
+  const env = process.env.SESSION_SECRET;
+  return Boolean(env && env.length >= 32) || process.env.NODE_ENV !== "production";
+}
+
 export async function createSession(user: { id: number; role: Role; sessionVersion: number }) {
   const token = await new SignJWT({ role: user.role, v: user.sessionVersion })
     .setProtectedHeader({ alg: "HS256" })

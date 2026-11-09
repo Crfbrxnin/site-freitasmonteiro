@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getSessionUser } from "@/lib/auth";
+import { getSessionUser, isSessionSecretConfigured } from "@/lib/auth";
 import { countUsers } from "@/lib/repo";
 import { Monogram } from "@/components/site/brand";
 import { LoginForm } from "./login-form";
@@ -22,7 +22,15 @@ export default async function LoginPage() {
         <div className="w-full max-w-sm">
           <Monogram className="h-14 w-auto text-vinho" />
           <h1 className="display display-md mt-8">Entrar no painel</h1>
-          {users === 0 ? (
+          {!isSessionSecretConfigured() ? (
+            <div role="alert" className="mt-6 rounded-xl border border-[#9b2c35]/30 bg-[#9b2c35]/8 p-5 text-sm leading-relaxed text-[#7a1f28]">
+              <p className="font-medium">Configuração incompleta: SESSION_SECRET.</p>
+              <p className="mt-2">
+                Defina a variável <code>SESSION_SECRET</code> na hospedagem com uma sequência aleatória de pelo menos 32 caracteres (recomendado: 48 ou mais) e aguarde a
+                nova publicação. Sem ela, não é possível entrar no painel.
+              </p>
+            </div>
+          ) : users === 0 ? (
             <div className="mt-6 rounded-xl border hairline bg-[var(--surface)] p-5 text-sm leading-relaxed">
               <p className="font-medium">Nenhum usuário cadastrado.</p>
               <p className="mt-2 muted">
