@@ -398,19 +398,23 @@ Tratamos os dados com base no seu consentimento e em procedimentos preliminares 
 
 Os dados podem ser processados por fornecedores que nos ajudam a operar o site e o atendimento (hospedagem, e-mail e sistema de gestão de contatos), sempre limitados às finalidades desta política.
 
-## 5. Por quanto tempo guardamos
+## 5. Transferência internacional
+
+Alguns desses fornecedores (por exemplo, hospedagem, e-mail, proteção do site e ferramentas de análise) podem armazenar ou processar dados em servidores fora do Brasil. Nesses casos, a transferência ocorre nos termos do art. 33 da LGPD, com fornecedores que adotam garantias contratuais e medidas de segurança compatíveis com a proteção exigida pela lei brasileira.
+
+## 6. Por quanto tempo guardamos
 
 Mantemos os dados pelo tempo necessário para atender à sua solicitação e cumprir obrigações legais. Você pode pedir a exclusão a qualquer momento.
 
-## 6. Seus direitos
+## 7. Seus direitos
 
 Você pode solicitar confirmação de tratamento, acesso, correção, anonimização, portabilidade, eliminação dos dados e revogação do consentimento, entre outros direitos previstos no art. 18 da LGPD.
 
-## 7. Cookies
+## 8. Cookies
 
 Usamos um cookie essencial para registrar a sua escolha de consentimento. Cookies de análise e publicidade só são ativados se você aceitar no aviso exibido no site. Você pode alterar a escolha a qualquer momento pelo link "Preferências de cookies" no rodapé.
 
-## 8. Contato
+## 9. Contato
 
 Para exercer seus direitos ou tirar dúvidas sobre esta política, fale com {{encarregado}} pelo e-mail {{email_privacidade}}.
 
