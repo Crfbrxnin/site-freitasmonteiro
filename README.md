@@ -97,4 +97,4 @@ Nada foi inventado. O painel lista o que falta em *Pendências de configuração
 
 Dados já preenchidos a partir do manual: CRC RJ-141105/O-6, WhatsApp (21) 98749-1091, Instagram @brunofreitas.cont, Rio de Janeiro/RJ.
 
-**Fotos:** as imagens em `public/images/` foram extraídas do manual da marca. Confirme a licença de uso no site antes de publicar, ou substitua pelas fotos próprias (escritório, documentos, mãos, cidade e retrato do Bruno).
+**Fotos:** as imagens em `public/images/` vieram do Unsplash (licença Unsplash: uso comercial gratuito, sem obrigação de crédito; não é permitido revendê-las como imagens avulsas). Foram extraídas do PDF do manual, então têm resolução limitada (até 940 × 2075 px). Para máxima nitidez em telas de alta densidade, substitua cada arquivo pelo original baixado do Unsplash mantendo o mesmo nome (`calculadora-vertical.jpg`, `calculadora.jpg`, `travessia-vertical.jpg`, `travessia.jpg`, `edificio.jpg`). O site já aplica o tratamento P&B do manual automaticamente. Para o retrato do Bruno, use foto própria (campo *Foto profissional* em Sobre nós).
