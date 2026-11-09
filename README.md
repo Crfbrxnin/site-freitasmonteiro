@@ -30,7 +30,8 @@ Para criar ou redefinir um administrador pelo terminal: `npm run admin:create --
 | `DATABASE_AUTH_TOKEN` | com Turso | Token do banco Turso |
 | `SESSION_SECRET` | sim | Segredo das sessões do painel (mín. 32 caracteres): `openssl rand -base64 48` |
 | `ADMIN_EMAIL` / `ADMIN_PASSWORD` | 1º acesso | Cria o primeiro administrador |
-| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM` | opcional | Envio dos leads por e-mail |
+| `RESEND_API_KEY`, `EMAIL_FROM` | opcional | Envio dos avisos de lead pela API do Resend (recomendado no Railway, que bloqueia SMTP no plano Hobby) |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM` | opcional | Envio por SMTP, em hospedagens que liberam as portas 465/587 |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY` | opcional | Antispam Cloudflare Turnstile |
 
 Nenhum segredo vai para o navegador. GA4, Search Console, Meta Pixel, e-mail de destino dos leads e webhook de CRM são configurados no painel (*Integrações*, só administradores).
@@ -47,7 +48,7 @@ Todas as páginas leem o banco a cada acesso (10–40 ms), então a instalação
    - `DATABASE_URL=file:/app/data/site.db`
    - `SESSION_SECRET=` (gere com `openssl rand -base64 48`)
    - `ADMIN_EMAIL=bruno@freitasmonteiro.com.br` e `ADMIN_PASSWORD=` (temporária; remova após o primeiro login)
-   - `SMTP_*` quando o e-mail estiver criado (exemplo com Zoho no `.env.example`).
+   - `RESEND_API_KEY` e `EMAIL_FROM` para os avisos de lead por e-mail (o Railway Hobby bloqueia SMTP).
 5. **Domínio:** em *Settings → Networking → Custom Domain*, adicione `freitasmonteiro.com.br` e `www.freitasmonteiro.com.br`. O Railway mostra os registros DNS a criar.
 6. **DNS no Cloudflare** (plano gratuito): domínios `.com.br` usam o Registro.br, cujo DNS não aceita CNAME no domínio raiz. Crie a zona no Cloudflare, aponte os *nameservers* no Registro.br para os do Cloudflare e crie os registros indicados pelo Railway com a nuvem **cinza** (*DNS only*). Antes de trocar os nameservers, confira se os registros de e-mail (MX, SPF, DKIM, DMARC) foram copiados.
 

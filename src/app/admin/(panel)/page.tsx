@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getGroup, getMetrics, listLeads, listPublicTestimonials, listServices } from "@/lib/repo";
 import { getSite } from "@/lib/site";
 import { requireUser } from "@/lib/auth";
+import { emailChannel } from "@/lib/email-config";
 import { STATUS_LABEL } from "@/lib/lead-status";
 import { formatDateTime } from "@/lib/utils";
 import { Badge, Card, Notice, PageTitle } from "@/components/admin/ui";
@@ -37,7 +38,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
     listPublicTestimonials(),
     listServices(),
   ]);
-  const smtp = Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS);
+  const smtp = Boolean(emailChannel());
   const conv = m.leadsPeriod + m.whatsappClicks;
 
   const checklist: { done: boolean; label: string; href: string }[] = [
@@ -52,7 +53,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
     { done: testimonials.length > 0, label: "Depoimentos autorizados", href: "/admin/depoimentos" },
     { done: Boolean(integ.ga4Id), label: "Google Analytics 4", href: "/admin/conteudo/integracoes" },
     { done: Boolean(integ.gscVerification), label: "Google Search Console", href: "/admin/conteudo/integracoes" },
-    { done: Boolean(integ.leadEmailTo && smtp), label: "E-mail de notificação de leads (SMTP)", href: "/admin/conteudo/integracoes" },
+    { done: Boolean(integ.leadEmailTo && smtp), label: "E-mail de notificação de leads", href: "/admin/conteudo/integracoes" },
     { done: Boolean(process.env.SITE_URL && !process.env.SITE_URL.includes("localhost")), label: "Domínio definido em SITE_URL", href: "/admin" },
     { done: !site.geral.showPlaceholders, label: "Desligar o modo de configuração antes de divulgar", href: "/admin/conteudo/geral" },
   ];

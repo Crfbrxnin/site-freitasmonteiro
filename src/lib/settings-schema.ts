@@ -356,7 +356,7 @@ export const GROUPS: Group[] = [
       { name: "ga4Id", label: "ID de medição do Google Analytics 4", type: "text", placeholder: "G-XXXXXXXXXX" },
       { name: "gscVerification", label: "Código de verificação do Google Search Console", type: "text", help: "Somente o valor do atributo content da meta tag google-site-verification." },
       { name: "metaPixelId", label: "ID do Meta Pixel (opcional)", type: "text" },
-      { name: "leadEmailTo", label: "E-mail que recebe os leads", type: "email", help: "Requer as variáveis SMTP configuradas na hospedagem." },
+      { name: "leadEmailTo", label: "E-mail que recebe os leads", type: "email", help: "Requer o envio de e-mail configurado na hospedagem (RESEND_API_KEY ou SMTP_*)." },
       { name: "webhookUrl", label: "Webhook de CRM / automação (opcional)", type: "url", help: "Cada lead é enviado em JSON (POST) para este endereço. Compatível com Make, Zapier, n8n, RD Station via integração, etc." },
       { name: "webhookSecret", label: "Segredo do webhook (opcional)", type: "text", help: "Enviado no cabeçalho X-Webhook-Secret para o destino validar a origem." },
     ],

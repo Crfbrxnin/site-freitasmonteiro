@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { requireAdmin, requireUser } from "@/lib/auth";
+import { emailChannel } from "@/lib/email-config";
 import { getGroup } from "@/lib/repo";
 import { GROUP_MAP } from "@/lib/settings-schema";
 import { SchemaForm } from "@/components/admin/schema-form";
@@ -16,7 +17,8 @@ export default async function GroupPage({ params }: { params: Promise<{ grupo: s
   if (group.adminOnly) await requireAdmin();
   else await requireUser();
   const values = await getGroup(grupo);
-  const smtpReady = Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS);
+  const channel = emailChannel();
+  const smtpReady = Boolean(channel);
 
   return (
     <>
@@ -34,8 +36,8 @@ export default async function GroupPage({ params }: { params: Promise<{ grupo: s
       {grupo === "integracoes" && (
         <Notice tone={smtpReady ? "ok" : "warn"}>
           {smtpReady
-            ? "SMTP configurado na hospedagem: os leads serão enviados ao e-mail informado abaixo."
-            : "SMTP não configurado: o envio de leads por e-mail fica desativado até definir SMTP_HOST, SMTP_USER e SMTP_PASS na hospedagem. Os leads continuam salvos no painel."}
+            ? `Envio de e-mail configurado na hospedagem (${channel === "resend" ? "Resend" : "SMTP"}): os leads serão enviados ao e-mail informado abaixo.`
+            : "Envio de e-mail não configurado: defina RESEND_API_KEY e EMAIL_FROM (ou as variáveis SMTP_*) na hospedagem. Até lá, os leads continuam salvos no painel."}
         </Notice>
       )}
       {grupo === "privacidade" && (
