@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Check } from "@flux-icons/react";
-import { getLanding, listLandings, listServices } from "@/lib/repo";
+import { getLanding, listServices } from "@/lib/repo";
 import { getSite, signatureLine, waLink } from "@/lib/site";
 import { buildMeta } from "@/lib/seo";
 import { pad2, ROMAN } from "@/lib/utils";
@@ -12,11 +12,7 @@ import { LeadForm } from "@/components/site/lead-form";
 import { Monogram } from "@/components/site/brand";
 import { WaLink } from "@/components/site/wa-link";
 
-export const revalidate = 300;
-
-export async function generateStaticParams() {
-  return (await listLandings()).map((l) => ({ slug: l.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

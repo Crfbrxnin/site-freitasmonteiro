@@ -4,7 +4,7 @@ import { buildMeta } from "@/lib/seo";
 import { PageHero } from "@/components/site/blocks";
 import { Markdown } from "@/components/site/markdown";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   return buildMeta({

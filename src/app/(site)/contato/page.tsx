@@ -9,7 +9,7 @@ import { socialLinks } from "@/components/site/footer";
 import { Tbd } from "@/components/site/tbd";
 import { JsonLd } from "@/components/site/json-ld";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   const seo = await getGroup<Record<string, string>>("seo");

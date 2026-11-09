@@ -14,11 +14,7 @@ import { JsonLd } from "@/components/site/json-ld";
 import { SectionHead } from "@/components/site/section-head";
 import { WaLink } from "@/components/site/wa-link";
 
-export const revalidate = 300;
-
-export async function generateStaticParams() {
-  return (await listServices()).map((s) => ({ slug: s.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

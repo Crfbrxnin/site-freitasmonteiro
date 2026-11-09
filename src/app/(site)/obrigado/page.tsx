@@ -5,6 +5,7 @@ import { Monogram } from "@/components/site/brand";
 import { WaLink } from "@/components/site/wa-link";
 
 export const metadata: Metadata = { title: "Mensagem recebida", robots: { index: false, follow: false } };
+export const dynamic = "force-dynamic";
 
 export default async function ObrigadoPage() {
   const site = await getSite();

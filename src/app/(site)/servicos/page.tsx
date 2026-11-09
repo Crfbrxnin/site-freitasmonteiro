@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/site/json-ld";
 import Link from "next/link";
 import type { Step } from "@/lib/types";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   const seo = await getGroup<Record<string, string>>("seo");

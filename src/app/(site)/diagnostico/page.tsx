@@ -10,7 +10,7 @@ import { FaqList, faqJsonLd } from "@/components/site/faq";
 import { JsonLd } from "@/components/site/json-ld";
 import { SectionHead } from "@/components/site/section-head";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   const seo = await getGroup<Record<string, string>>("seo");

@@ -35,11 +35,27 @@ Para criar ou redefinir um administrador pelo terminal: `npm run admin:create --
 
 Nenhum segredo vai para o navegador. GA4, Search Console, Meta Pixel, e-mail de destino dos leads e webhook de CRM são configurados no painel (*Integrações*, só administradores).
 
-## 3. Publicação
+## 3. Publicação (recomendado: Railway + Cloudflare)
 
-**Opção A — servidor com disco (VPS, Railway, Render, Fly.io):** `npm run build && npm start`, com `DATABASE_URL=file:./data/site.db` em um volume persistente. HTTPS pelo provedor ou proxy (Caddy/Nginx).
+Todas as páginas leem o banco a cada acesso (10–40 ms), então a instalação (build) não depende do banco e o conteúdo editado no painel aparece na hora.
 
-**Opção B — Vercel:** use **Turso** (`DATABASE_URL=libsql://...` + `DATABASE_AUTH_TOKEN`), porque o disco da Vercel não é persistente. Imagens enviadas pelo painel ficam no próprio banco, então funcionam nas duas opções.
+1. **GitHub:** envie este projeto para um repositório **privado**.
+2. **Railway** (railway.com): *New Project → Deploy from GitHub repo*. O Railway detecta o Next.js e roda `npm run build` e `npm start` (a porta vem da variável `PORT`).
+3. **Volume:** no serviço, *Add Volume* com caminho de montagem `/app/data`. É ali que ficam o banco, os leads e as imagens enviadas.
+4. **Variáveis** (*Variables*):
+   - `SITE_URL=https://freitasmonteiro.com.br`
+   - `DATABASE_URL=file:/app/data/site.db`
+   - `SESSION_SECRET=` (gere com `openssl rand -base64 48`)
+   - `ADMIN_EMAIL=bruno@freitasmonteiro.com.br` e `ADMIN_PASSWORD=` (temporária; remova após o primeiro login)
+   - `SMTP_*` quando a caixa `contato@` estiver criada.
+5. **Domínio:** em *Settings → Networking → Custom Domain*, adicione `freitasmonteiro.com.br` e `www.freitasmonteiro.com.br`. O Railway mostra os registros DNS a criar.
+6. **DNS no Cloudflare** (plano gratuito): domínios `.com.br` usam o Registro.br, cujo DNS não aceita CNAME no domínio raiz. Crie a zona no Cloudflare, aponte os *nameservers* no Registro.br para os do Cloudflare e crie os registros indicados pelo Railway com a nuvem **cinza** (*DNS only*). Antes de trocar os nameservers, confira se os registros de e-mail (MX, SPF, DKIM, DMARC) foram copiados.
+
+**Alternativa — Vercel:** use Turso como banco (`DATABASE_URL=libsql://...` + `DATABASE_AUTH_TOKEN`). Uso comercial na Vercel exige o plano Pro.
+
+**Servidor próprio (VPS):** `npm ci && npm run build && npm start` atrás de Caddy ou Nginx com HTTPS, com `data/` em disco persistente e backup.
+
+**Backup:** o banco é um único arquivo (`/app/data/site.db`). Faça cópias periódicas (no Railway, use os *backups* do volume).
 
 ### Domínio e e-mails
 

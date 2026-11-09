@@ -19,6 +19,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+/** Todo o site lê o banco em tempo real: nenhuma página depende do banco durante a instalação (build). */
+export const dynamic = "force-dynamic";
+
 export const viewport: Viewport = {
   themeColor: "#141112",
   colorScheme: "dark light",

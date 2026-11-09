@@ -13,7 +13,7 @@ import { Monogram } from "@/components/site/brand";
 import { JsonLd } from "@/components/site/json-ld";
 import { WaLink } from "@/components/site/wa-link";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 type Sobre = {
   title: string;

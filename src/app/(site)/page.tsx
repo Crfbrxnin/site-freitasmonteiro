@@ -12,7 +12,7 @@ import { FinalCta, Photo, PostCard, ServiceGrid, Steps } from "@/components/site
 import { WaLink } from "@/components/site/wa-link";
 import { ServiceIcon } from "@/components/site/icons";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 type Home = {
   heroTitle: string;

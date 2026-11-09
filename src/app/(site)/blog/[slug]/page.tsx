@@ -14,7 +14,7 @@ import { WaLink } from "@/components/site/wa-link";
 import { SectionHead } from "@/components/site/section-head";
 import { ServiceIcon } from "@/components/site/icons";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
